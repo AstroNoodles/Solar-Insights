@@ -33,20 +33,21 @@
 -->
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -87,53 +88,53 @@
         </Menu>
       </menus>
     </MenuBar>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-         <children>
-            <AnchorPane prefHeight="40.0" prefWidth="640.0">
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+            <HBox spacing="70.0">
                <children>
-                  <Label prefHeight="38.0" prefWidth="640.0" text="Welcome to Solar Insights!">
+                  <Label prefHeight="31.0" prefWidth="121.0" text="Solar Insights">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <opaqueInsets>
-                        <Insets left="100.0" />
+                        <Insets />
                      </opaqueInsets>
+                  </Label>
+                  <Label text="RESOURCES">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
                      <padding>
-                        <Insets left="210.0" />
+                        <Insets left="25.0" right="25.0" />
                      </padding>
                   </Label>
-               </children>
-            </AnchorPane>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="314.0" text="Your zipcode: 11202!">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="36.0" prefWidth="309.0" text="Bergen County, NJ">
-                           <font>
-                              <Font name="System Bold Italic" size="25.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@bergencounty.jpg" />
-                     </image>
-                  </ImageView>
+                <Button mnemonicParsing="false" text="About Us">
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        </items>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ToolBar>
+      <Accordion prefWidth="1000.0">
+        <panes>
+          <TitledPane animated="false" text="What is a solar panel?">
+               <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label text="View Specific Info On Your Zipcode " wrapText="true">
+                        <Label text="Text describing what a solar panel is." wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="14.0" />
                            </font>
                            <padding>
                               <Insets left="5.0" />
@@ -141,31 +142,70 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               </content>
+          </TitledPane>
+          <TitledPane animated="false" text="What are the benefits of solar panels?">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Pricing">
+                        <Label text="Text describing the benefits of solar panels" wrapText="true">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
-                        </Button>
-                        <Button mnemonicParsing="false" text="Producers">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" text="General Analysis">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
                      </children>
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+                  </AnchorPane>
+               </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Will the government give me tax credits?">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Text describing if the government will give me tax credits" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </TitledPane>
+            <TitledPane animated="false" text="How long does it take to install solar panels?">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Text describing the solar panel installation process" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+      <Label text="Other FAQs Coming Soon!">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label text="Sign in with your zipcode to see local news for your county and other counties in New Jersey!">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
   </children>
 </VBox>
