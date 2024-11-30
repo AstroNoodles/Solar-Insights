@@ -2,8 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
@@ -12,8 +19,85 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <MenuBar VBox.vgrow="NEVER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="New" />
+                  <MenuItem mnemonicParsing="false" text="Open…" />
+                  <Menu mnemonicParsing="false" text="Open Recent" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Save As…" />
+                  <MenuItem mnemonicParsing="false" text="Revert" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Undo" />
+                  <MenuItem mnemonicParsing="false" text="Redo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Select All" />
+                  <MenuItem mnemonicParsing="false" text="Unselect All" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+         <items>
+            <HBox spacing="70.0">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="121.0" text="Solar Insights">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label text="Vendors">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="25.0" right="25.0" />
+                     </padding>
+                  </Label>
+                  <Button mnemonicParsing="false" text="About Us">
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </items>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ToolBar>
       <HBox prefHeight="120.0" prefWidth="600.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -21,19 +105,24 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@anonymous.png" />
+                  <Image url="@../images/business_logo.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="145.0" prefWidth="442.0" HBox.hgrow="SOMETIMES">
+            <VBox prefHeight="145.0" prefWidth="442.0" spacing="5.0" HBox.hgrow="SOMETIMES">
                <children>
-                  <Label text="Person Name">
+                  <Label text="Business Name">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="73.0" prefWidth="425.0">
+                  <Label text="Location">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <FlowPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="224.0">
+                        <FlowPane prefHeight="74.0" prefWidth="224.0">
                            <children>
                               <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="44.0">
                                  <graphic>
@@ -62,14 +151,20 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="10.0" />
                            </HBox.margin>
                         </FlowPane>
-                        <CheckBox mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Have Bought">
+                        <Label prefHeight="22.0" prefWidth="85.0" text="(40 Reviews)">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
                            <HBox.margin>
-                              <Insets left="10.0" top="25.0" />
+                              <Insets top="20.0" />
                            </HBox.margin>
-                        </CheckBox>
+                        </Label>
                      </children>
                   </HBox>
                   <Label text="Desciption for the energy company." wrapText="true" />
@@ -80,8 +175,25 @@
             </VBox>
          </children>
       </HBox>
+      <Separator prefHeight="17.0" prefWidth="608.0" />
+      <HBox prefHeight="44.0" prefWidth="608.0">
+         <children>
+            <Label text="Reviews">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ChoiceBox prefWidth="150.0">
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+            </ChoiceBox>
+         </children>
+      </HBox>
+      <ListView prefHeight="329.0" prefWidth="608.0">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </ListView>
    </children>
-   <padding>
-      <Insets bottom="10.0" top="10.0" />
-   </padding>
 </VBox>

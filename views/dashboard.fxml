@@ -110,7 +110,7 @@
          <children>
             <ImageView fitHeight="308.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                <image>
-                  <Image url="@pexels-einfoto-2130511.jpg" />
+                  <Image url="@../images/solarpanels2.jpg" />
                </image>
                <HBox.margin>
                   <Insets top="50.0" />
