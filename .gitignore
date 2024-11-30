@@ -1,0 +1,4 @@
+*.class
+*.docx
+Libraries/
+.vscode
