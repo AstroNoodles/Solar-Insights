@@ -1,4 +1,7 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 // /Library/javafx-sdk-11.0.2/lib
@@ -11,7 +14,10 @@ public class Dashboard extends Application{
     }
 
     @Override
-    public void start(Stage arg0) throws Exception {
-        System.out.println("eeee");
+    public void start(Stage primaryStage) throws Exception {
+        VBox dashboardBox = FXMLLoader.<VBox>load(getClass().getResource("/views/dashboard.fxml"));
+        Scene scene = new Scene(dashboardBox);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
