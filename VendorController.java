@@ -19,7 +19,7 @@ public class VendorController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) { 
         vendorFilterBox.setItems(FXCollections.observableArrayList("Hudson County", "Bergen County", "Number of Ratings"));
-        vendorPopulator.setCellFactory(_ -> new VendorCardCell());
+        vendorPopulator.setCellFactory(cb -> new VendorCardCell());
     }
 
     @FXML
