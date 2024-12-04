@@ -10,26 +10,26 @@ import javafx.scene.control.Slider;
 public class ReviewCardController implements Initializable{
 
     @FXML
-    private Label reviewerNameLabel, reviewerDescLabel;
+    private Label reviewerNameLabel, reviewDescLabel;
 
     @FXML
     private CheckBox reviewerVerified;
 
     @FXML
-    private Slider reviewerRating;
+    private Slider reviewerRating; 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         reviewerNameLabel.setText("");
-        reviewerDescLabel.setText("");
+        reviewDescLabel.setText("");
         reviewerVerified.setSelected(false);
         reviewerRating.setValue(5);
     }
 
     public void addReview(Review review) {
         reviewerNameLabel.setText(review.getName());
-        reviewerDescLabel.setText(review.getDescription());
+        reviewDescLabel.setText(review.getDescription());
         reviewerVerified.setSelected(review.didReviewerBuy());
         reviewerRating.setValue(review.getNumStars());
     }

@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReviewController">
+<VBox prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="ReviewCardController">
    <children>
       <HBox prefHeight="120.0" prefWidth="600.0">
          <children>
@@ -20,7 +21,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <image>
-                  <Image url="@../images/anonymous.png" />
+                  <Image url="@../images/anonymous.png" /> 
                </image>
             </ImageView>
             <VBox prefHeight="145.0" prefWidth="442.0" HBox.hgrow="SOMETIMES">

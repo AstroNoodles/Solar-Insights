@@ -33,14 +33,14 @@ public class VendorCardController implements Initializable {
         if(me.getButton() == MouseButton.PRIMARY && me.getClickCount() == 2) {
             System.out.println("Opening vendors");
             // open the vendors scene and pass along current vendor info
-            Vendor currentVendor = new Vendor(businessNameLabel.getText(), locationLabel.getText(), ratingBar.getValue());
-            VendorReviewsController reviewsController = new VendorReviewsController();
-            reviewsController.setVendor(currentVendor);
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/vendor_review_list.fxml"));
                 VBox reviewWindow = loader.<VBox>load();
-                loader.setController(reviewsController);
+
+                Vendor currentVendor = new Vendor(businessNameLabel.getText(), locationLabel.getText(), ratingBar.getValue());
+                ReviewsController controller = loader.getController();
+                controller.setVendor(currentVendor);
 
                 Stage reviewStage = new Stage();
                 reviewStage.setTitle("Vendor Reviews");

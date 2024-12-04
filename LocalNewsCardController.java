@@ -49,10 +49,8 @@ public class LocalNewsCardController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/news_viewer.fxml"));
             VBox newsViewer = loader.<VBox>load();
 
-            LocalNewsWebViewer webController = new LocalNewsWebViewer();
+            LocalNewsWebViewer webController = loader.getController();
             webController.setURLToLoad(source);
-            
-            loader.setController(webController);
 
             Stage webStage = new Stage();
             webStage.setTitle("Local News Reader");

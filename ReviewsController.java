@@ -3,42 +3,54 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 
-public class VendorReviewsController implements Initializable {
-
-    private Vendor currentVendor;
+public class ReviewsController implements Initializable {
 
     @FXML
     private ListView<Vendor> currentVendorList;
 
     @FXML
+    private ChoiceBox<String> ratingFilterBox;
+
+    @FXML
     private ListView<Review> vendorReviewList;
 
+    private ObservableList<Review> vendorReviews;
 
     public void setVendor(Vendor currVendor) {
-        this.currentVendor = currVendor;
+        currentVendorList.setItems(FXCollections.observableArrayList(currVendor));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { 
-        currentVendorList.setCellFactory(cb -> new VendorController().new VendorCard());
+        
+        ratingFilterBox.setItems(FXCollections.observableArrayList("Ratings - Highest To Lowest", "Ratings - Lowest To Highest"));
+        
+        ratingFilterBox.getSelectionModel().selectedItemProperty().addListener((value, oldFilter, newFilter) -> updateRatings(oldFilter, newFilter));
 
-        currentVendorList.setItems(FXCollections.observableArrayList(currentVendor));
+        currentVendorList.setCellFactory(cb -> new VendorController().new VendorCard());
 
         vendorReviewList.setCellFactory(cb -> new VendorReviewCard());
         
         Review sampleReview = new Review("Joe Flood", "very good company!", 4, true);
-        vendorReviewList.setItems(FXCollections.observableArrayList(sampleReview));
+        vendorReviews = FXCollections.observableArrayList(sampleReview);
+        vendorReviewList.setItems(vendorReviews);
 
         // JDBC Query here to add all reviews into review cards
+    }
+
+    private void updateRatings(String oldFilter, String newFilter) {
+        System.out.println("Updating ratings from JDBC");
     }
 
     @FXML
@@ -68,6 +80,7 @@ public class VendorReviewsController implements Initializable {
         protected void updateItem(Review review, boolean empty) {
             super.updateItem(review, empty);
             if(empty || review == null) {
+                setText(null);
                 setGraphic(null);
             } else {
                 controller.addReview(review);

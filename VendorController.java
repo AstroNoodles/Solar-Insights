@@ -72,6 +72,7 @@ public class VendorController implements Initializable{
         protected void updateItem(Vendor item, boolean empty) {
             super.updateItem(item, empty);
             if(empty || item == null) {
+                setText(null);
                 setGraphic(null);
             } else {
                 controller.addVendor(item);
