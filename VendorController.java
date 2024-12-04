@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,15 +22,27 @@ public class VendorController implements Initializable{
     @FXML
     private ChoiceBox<String> vendorFilterBox;
 
+    private ObservableList<Vendor> vendorList;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) { 
         vendorFilterBox.setItems(FXCollections.observableArrayList("Rating - High To Low", "Rating - Low To High"));
+        
+        vendorFilterBox.getSelectionModel().selectedItemProperty().addListener((val, oldFilter, newFilter) -> {
+            reloadVendorList(oldFilter, newFilter);
+        });
+
         vendorPopulator.setCellFactory(cb -> new VendorCard());
 
         // JDBC query here to add all vendors into vendor cards
         // ensure that fx:controller is correct for all fxml to ensure fields get updated properly among passthrough
         Vendor sampleVendor = new Vendor("Industrial Holdings", "31 Second St, Pennsauken, NJ, 07016", 4);
-        vendorPopulator.setItems(FXCollections.observableArrayList(sampleVendor));
+        vendorList = FXCollections.observableArrayList(sampleVendor);
+        vendorPopulator.setItems(vendorList);
+    }
+
+    private void reloadVendorList(String oldFilter, String newFilter) {
+        System.out.println("Reloading the vendor list");
     }
 
     @FXML

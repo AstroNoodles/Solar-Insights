@@ -10,12 +10,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" 
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocalNewsController">
+<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocalNewsController">
    <children>
       <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -76,7 +76,7 @@
                         <Insets left="25.0" right="25.0" />
                      </padding>
                   </Label>
-                  <Button onAction="#openAboutUs" mnemonicParsing="false" text="About Us">
+                  <Button mnemonicParsing="false" onAction="#openAboutUs" text="About Us">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
@@ -104,13 +104,16 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="filterBox" prefWidth="150.0">
+               <tooltip>
+                  <Tooltip text="Filter By" />
+               </tooltip></ChoiceBox>
          </children>
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </HBox>
-      <ListView prefHeight="488.0" prefWidth="608.0" fx:id="newsList">
+      <ListView fx:id="newsList" prefHeight="488.0" prefWidth="608.0">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>

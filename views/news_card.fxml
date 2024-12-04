@@ -11,10 +11,9 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/23" 
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocalNewsCardController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocalNewsCardController">
    <children>
-      <Button onAction="#openSite" mnemonicParsing="false">
+      <Button mnemonicParsing="false" onAction="#openSite">
          <graphic>
             <ImageView fx:id="cardImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +43,7 @@
             <Insets right="10.0" top="10.0" />
          </HBox.margin>
       </VBox>
-      <Button fx:id="favoriteButton" onAction="#addAsFavorite" mnemonicParsing="false" prefHeight="49.0" prefWidth="57.0">
+      <Button fx:id="favoriteButton" mnemonicParsing="false" onAction="#addAsFavorite" prefHeight="49.0" prefWidth="57.0">
          <HBox.margin>
             <Insets right="10.0" top="35.0" />
          </HBox.margin>

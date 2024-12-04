@@ -22,8 +22,9 @@ public class VendorReviewsController implements Initializable {
     @FXML
     private ListView<Review> vendorReviewList;
 
-    public VendorReviewsController(Vendor currentVendor) {
-        this.currentVendor = currentVendor;
+
+    public void setVendor(Vendor currVendor) {
+        this.currentVendor = currVendor;
     }
 
     @Override

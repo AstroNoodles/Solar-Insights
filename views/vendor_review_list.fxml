@@ -11,16 +11,11 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="VendorReviewsController">
+<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VendorReviewsController">
    <children>
       <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -81,7 +76,7 @@
                         <Insets left="25.0" right="25.0" />
                      </padding>
                   </Label>
-                  <Button onAction="#openAboutUs" mnemonicParsing="false" text="About Us">
+                  <Button mnemonicParsing="false" onAction="#openAboutUs" text="About Us">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
@@ -101,7 +96,7 @@
       </ToolBar>
       <ListView fx:id="currentVendorList" prefHeight="329.0" prefWidth="608.0">
          <VBox.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </ListView>
       <Separator prefHeight="17.0" prefWidth="608.0" />
@@ -111,17 +106,20 @@
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
             </Label>
             <ChoiceBox prefWidth="150.0">
                <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
+                  <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </ChoiceBox>
          </children>
       </HBox>
       <ListView fx:id="vendorReviewList" prefHeight="329.0" prefWidth="608.0">
          <VBox.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </ListView>
    </children>

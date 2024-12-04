@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ReviewController">
+<VBox prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReviewController">
    <children>
       <HBox prefHeight="120.0" prefWidth="600.0">
          <children>
@@ -33,23 +30,24 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="73.0" prefWidth="425.0">
+                  <HBox prefHeight="73.0" prefWidth="425.0" spacing="10.0">
                      <children>
-                        <Slider fx:id="reviewerRating" min="0" max="5" blockIncrement="1" showTickLabels="true" 
-                                 prefHeight="46.0" prefWidth="224.0" disable="true">
+                        <Slider fx:id="reviewerRating" blockIncrement="1" disable="true" max="5" min="0" prefHeight="46.0" prefWidth="224.0" showTickLabels="true" showTickMarks="true">
                            <HBox.margin>
                               <Insets top="20.0" />
                            </HBox.margin>
+                           <tooltip>
+                              <Tooltip text="Revierw" />
+                           </tooltip>
                         </Slider>
-                        <CheckBox fx:id="reviewerVerified" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" 
-                                    text="Have Bought" disable="true">
+                        <CheckBox fx:id="reviewerVerified" disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Have Bought">
                            <HBox.margin>
                               <Insets left="10.0" top="25.0" />
                            </HBox.margin>
                         </CheckBox>
                      </children>
                   </HBox>
-                  <Label fx:id="reviewDescLabel" text="Desciption for the energy company." wrapText="true" />
+                  <Label fx:id="reviewDescLabel" text="Review description" wrapText="true" />
                </children>
                <padding>
                   <Insets left="15.0" top="5.0" />

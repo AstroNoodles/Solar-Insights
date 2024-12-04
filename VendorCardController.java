@@ -34,7 +34,8 @@ public class VendorCardController implements Initializable {
             System.out.println("Opening vendors");
             // open the vendors scene and pass along current vendor info
             Vendor currentVendor = new Vendor(businessNameLabel.getText(), locationLabel.getText(), ratingBar.getValue());
-            VendorReviewsController reviewsController = new VendorReviewsController(currentVendor);
+            VendorReviewsController reviewsController = new VendorReviewsController();
+            reviewsController.setVendor(currentVendor);
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/vendor_review_list.fxml"));

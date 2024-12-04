@@ -37,9 +37,9 @@ public class LocalNewsCardController implements Initializable {
     @FXML
     private void addAsFavorite(ActionEvent ae) {
         if(favoriteButton.getStyle().contains("yellow")) {
-            favoriteButton.setStyle("-fx-background-color: ivory");
+            favoriteButton.setStyle("-fx-background-color: ivory; -fx-border-color: #BDBDBD; -fx-border-width: 3");
         } else {
-            favoriteButton.setStyle("-fx-background-color: yellow");
+            favoriteButton.setStyle("-fx-background-color: yellow; -fx-border-color: #BDBDBD; -fx-border-width: 3");
         }
     }
 
@@ -49,7 +49,9 @@ public class LocalNewsCardController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/news_viewer.fxml"));
             VBox newsViewer = loader.<VBox>load();
 
-            LocalNewsWebViewer webController = new LocalNewsWebViewer(source);
+            LocalNewsWebViewer webController = new LocalNewsWebViewer();
+            webController.setURLToLoad(source);
+            
             loader.setController(webController);
 
             Stage webStage = new Stage();

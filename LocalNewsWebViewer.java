@@ -8,12 +8,13 @@ import javafx.scene.web.WebView;
 
 public class LocalNewsWebViewer implements Initializable {
 
-    private String urlToLoad = "about:blank";
+    private String urlToLoad = "https://www.google.com";
 
     @FXML
     private WebView webInterface;
 
-    public LocalNewsWebViewer(String urlToLoad) {
+
+    public void setURLToLoad(String urlToLoad) {
         if(urlToLoad != "") {
             System.out.printf("Loading %s\n", urlToLoad);
             this.urlToLoad = urlToLoad;
