@@ -1,47 +1,62 @@
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class VendorCardController implements Initializable {
 
     @FXML
-    private Label businessNameLabel, locationLabel, reviewsLabel;
+    private Label businessNameLabel, locationLabel;
 
     @FXML
-    private Button ratingButton1, ratingButton2, ratingButton3, ratingButton4, ratingButton5;
-
-    @FXML
-    private FlowPane ratingBar;
+    private Slider ratingBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         businessNameLabel.setText("");
         locationLabel.setText("");
-        reviewsLabel.setText("");
-
-        ratingBar.getChildren().forEach((buttonNode) -> {
-            buttonNode.setStyle("-fx-background-color: yellow;");
-        });
+        ratingBar.setValue(5);
     }
 
     @FXML
-    private void updateRating(ActionEvent ae) {
-        Button ratingButton = (Button) ae.getSource();
-        if(ratingButton.getStyle().contains("yellow")) {
-            ratingButton.setStyle("-fx-background-color: ivory");
-        } else {
-            ratingButton.setStyle("-fx-background-color: yellow");
+    public void openReviewsForVendor(MouseEvent me) {
+        if(me.getButton() == MouseButton.PRIMARY && me.getClickCount() == 2) {
+            System.out.println("Opening vendors");
+            // open the vendors scene and pass along current vendor info
+            Vendor currentVendor = new Vendor(businessNameLabel.getText(), locationLabel.getText(), ratingBar.getValue());
+            VendorReviewsController reviewsController = new VendorReviewsController(currentVendor);
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/vendor_review_list.fxml"));
+                VBox reviewWindow = loader.<VBox>load();
+                loader.setController(reviewsController);
+
+                Stage reviewStage = new Stage();
+                reviewStage.setTitle("Vendor Reviews");
+                
+                Scene reviewScene = new Scene(reviewWindow);
+                reviewStage.setScene(reviewScene);
+                reviewStage.show();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void addVendor(Vendor vendor) {
-        // what happens to UI when new vendor gets added
+        businessNameLabel.setText(vendor.getBusinessName());
+        locationLabel.setText(vendor.getLocation());
+        ratingBar.setValue(vendor.getRating());
     }
     
 }

@@ -11,11 +11,12 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<HBox minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/23" 
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocalNewsCardController">
    <children>
-      <Button mnemonicParsing="false">
+      <Button onAction="#openSite" mnemonicParsing="false">
          <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cardImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/bergencounty.jpg" />
                </image>
@@ -27,13 +28,13 @@
       </Button>
       <VBox prefHeight="80.0" prefWidth="300.0" spacing="10.0" HBox.hgrow="ALWAYS">
          <children>
-            <Label text="Headline" wrapText="true">
+            <Label fx:id="headlineLabel" text="Headline" wrapText="true">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label text="Primary Text" wrapText="true" />
-            <Label text="Source" wrapText="true">
+            <Label fx:id="primaryTextLabel" text="Primary Text" wrapText="true" />
+            <Label fx:id="sourceLabel" text="Source" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -43,7 +44,7 @@
             <Insets right="10.0" top="10.0" />
          </HBox.margin>
       </VBox>
-      <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="57.0">
+      <Button fx:id="favoriteButton" onAction="#addAsFavorite" mnemonicParsing="false" prefHeight="49.0" prefWidth="57.0">
          <HBox.margin>
             <Insets right="10.0" top="35.0" />
          </HBox.margin>

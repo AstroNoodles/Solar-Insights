@@ -1,22 +1,22 @@
 public class NewsItem {
 
-    private String imagePath, headline, primaryText, sourceURL;
+    private String imageURL, headline, primaryText, sourceURL;
     private boolean isFavorite = false;
 
-    public NewsItem(String imagePath, String headline, String primaryText, String sourceURL, boolean isFavorite) {
-        this.imagePath = imagePath;
+    public NewsItem(String imageURL, String headline, String primaryText, String sourceURL, boolean isFavorite) {
+        this.imageURL = imageURL;
         this.headline = headline;
         this.primaryText = primaryText;
         this.sourceURL = sourceURL;
         this.isFavorite = isFavorite;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImageURL(String imagePath) {
+        this.imageURL = imagePath;
     }
 
     public void setPrimaryText(String primaryText) {

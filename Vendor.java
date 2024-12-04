@@ -3,12 +3,18 @@ public class Vendor {
     
     private String businessName, location;
     private int numReviews;
-    private int rating;
+    private double rating;
 
-    public Vendor(String businessName, String location, int numReviews, int rating) {
+    public Vendor(String businessName, String location, int numReviews, double rating) {
         this.businessName = businessName;
         this.location = location;
         this.numReviews = numReviews;
+        this.rating = rating;
+    }
+
+    public Vendor(String businessName, String location, double rating) {
+        this.businessName = businessName;
+        this.location = location;
         this.rating = rating;
     }
 
@@ -36,11 +42,11 @@ public class Vendor {
         this.numReviews = numReviews;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
     
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

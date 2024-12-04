@@ -1,9 +1,9 @@
 public class Review {
     private String name, description;
-    private int numStars;
+    private double numStars;
     private boolean haveBought = false;
 
-    public Review(String name, String description, int numStars, boolean haveBought) {
+    public Review(String name, String description, double numStars, boolean haveBought) {
         this.name = name;
         this.description = description;
         this.numStars = numStars;
@@ -26,11 +26,11 @@ public class Review {
         return description;
     }
 
-    public void setNumStars(int numStars) {
+    public void setNumStars(double numStars) {
         this.numStars = numStars;
     }
 
-    public int getNumStars() {
+    public double getNumStars() {
         return numStars;
     }
 
