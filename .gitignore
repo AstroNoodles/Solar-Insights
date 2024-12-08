@@ -3,3 +3,4 @@
 Libraries/
 .vscode
 .DS_Store
+secrets.properties

@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,23 +23,11 @@ public class LocalNewsCardController implements Initializable {
     @FXML
     private Label headlineLabel, primaryTextLabel, sourceLabel;
 
-    @FXML
-    private Button favoriteButton;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         headlineLabel.setText("");
         primaryTextLabel.setText("");
         sourceLabel.setText("");
-    }
-
-    @FXML
-    private void addAsFavorite(ActionEvent ae) {
-        if(favoriteButton.getStyle().contains("yellow")) {
-            favoriteButton.setStyle("-fx-background-color: ivory; -fx-border-color: #BDBDBD; -fx-border-width: 3");
-        } else {
-            favoriteButton.setStyle("-fx-background-color: yellow; -fx-border-color: #BDBDBD; -fx-border-width: 3");
-        }
     }
 
     @FXML
@@ -54,12 +41,12 @@ public class LocalNewsCardController implements Initializable {
 
             Stage webStage = new Stage();
             webStage.setTitle("Local News Reader");
-            
+
             Scene primaryScene = new Scene(newsViewer);
             webStage.setScene(primaryScene);
             webStage.show();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -68,8 +55,8 @@ public class LocalNewsCardController implements Initializable {
         cardImage.setImage(new Image(item.getImageURL()));
         headlineLabel.setText(item.getHeadline());
         primaryTextLabel.setText(item.getPrimaryText());
-        sourceLabel.setText(String.format("From %s", item.getSourceURL()));
+        sourceLabel.setText(item.getSourceSite());
         source = item.getSourceURL();
     }
-    
+
 }

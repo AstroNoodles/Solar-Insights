@@ -15,8 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" 
-         fx:controller="ReviewsController">
+<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReviewsController">
    <children>
       <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -116,6 +115,11 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </ChoiceBox>
+            <Button mnemonicParsing="false" onAction="#seeReviews" text="See Reviews">
+               <HBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <ListView fx:id="vendorReviewList" prefHeight="329.0" prefWidth="608.0">

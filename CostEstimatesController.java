@@ -1,8 +1,8 @@
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javafx.beans.value.ChangeListener;
@@ -33,49 +33,40 @@ public class CostEstimatesController implements Initializable {
             "07097", "07099", "07303", "07308", "07395", "07399");
 
     @FXML
-    private Label countyNameLabel, savingsLabel, taxCreditsLabel, maintenanceLabel, installationCostLabel,
-            calendarLabel, daylightHoursLabel;
+    private Label countyNameLabel, incentiveLabel, installationCostLabel, daylightHoursLabel;
 
     @FXML
-    private ChoiceBox<String> zipcodeBox;
-
-    @FXML
-    private ChoiceBox<Integer> solarPanelBox, gasApplianceBox;
-
-    private boolean bergenCountyZip = true;
+    private ChoiceBox<String> zipcodeBox, neighborhoodBox, houseBox, solarLocationBox, powerBox, entityBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         // Set up Labels
-        savingsLabel.setText("");
-        taxCreditsLabel.setText("");
-        maintenanceLabel.setText("");
+        incentiveLabel.setText("");
         installationCostLabel.setText("");
-        calendarLabel.setText("");
         daylightHoursLabel.setText("");
 
-        List<Integer> appliancePanelListing = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
-        solarPanelBox.setItems(FXCollections.observableArrayList(appliancePanelListing));
-        gasApplianceBox.setItems(FXCollections.observableArrayList(appliancePanelListing));
-        
-        List<String> concatZipCodes = Stream.concat(bergenCountyZips.stream(), hudsonCountyZips.stream()).collect(Collectors.toList());
+        neighborhoodBox.setItems(FXCollections.observableArrayList("residential", "commercial"));
+        houseBox.setItems(FXCollections.observableArrayList("small", "large"));
+        solarLocationBox.setItems(FXCollections.observableArrayList("roof", "ground"));
+        powerBox.setItems(FXCollections.observableArrayList("5KW", "6KW"));
+        entityBox.setItems(FXCollections.observableArrayList("public", "private"));
+
+        List<String> concatZipCodes = Stream.concat(bergenCountyZips.stream(), hudsonCountyZips.stream())
+                .collect(Collectors.toList());
         zipcodeBox.setItems(FXCollections.observableArrayList(concatZipCodes));
-        zipcodeBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+        zipcodeBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> val, String oldZip, String newZip) {
-                
-               if(bergenCountyZips.contains(newZip)){
+
+                if (bergenCountyZips.contains(newZip)) {
                     countyNameLabel.setText("Bergen County");
                     countyNameLabel.setTextFill(Color.RED);
-                    bergenCountyZip = true;
-               } else {
+                } else {
                     countyNameLabel.setText("Hudson County");
                     countyNameLabel.setTextFill(Color.BLUE);
-                    bergenCountyZip = false;
-               }
+                }
             }
-            
         });
     }
 
@@ -87,7 +78,41 @@ public class CostEstimatesController implements Initializable {
     @FXML
     private void queryDatabase(ActionEvent ae) {
         System.out.println("Querying the database");
-        System.out.printf("Zipcode currently is Bergen County? %b\n", bergenCountyZip);
+        try (VendorQueries vq = new VendorQueries("secrets.properties")) {
+            String neighborhood = neighborhoodBox.getValue();
+            String house = houseBox.getValue();
+            String solarLocation = solarLocationBox.getValue();
+            String kilowattsTyped = powerBox.getValue();
+            String entity = entityBox.getValue();
+
+            if (neighborhood.equals("residential")) {
+                List<Integer> residentialIncentives = vq.getResidentialIncentive();
+                System.out.println(residentialIncentives);
+                int incentive = residentialIncentives.get(0);
+
+                incentiveLabel.setText(String.format("$%d", incentive));
+            } else {
+                List<Integer> filteredIncentives = vq.getIncentiveViaFilter(neighborhood, house, solarLocation, entity);
+                System.out.println(filteredIncentives);
+                int incentive = filteredIncentives.get(0);
+
+                incentiveLabel.setText(String.format("$%d", incentive));
+            }
+
+            List<Integer> installationCosts = kilowattsTyped.equals("5KW") ? vq.getInstallationCost5KW()
+                    : vq.getInstallationCost6KW();
+            System.out.println(installationCosts);
+            int installationCost = installationCosts.get(0);
+            installationCostLabel.setText(String.format("$%d", installationCost));
+
+            List<Double> daylightHours = vq.getDaylightHours();
+            System.out.println(daylightHours);
+            double daylightHoursValue = daylightHours.get(0);
+            daylightHoursLabel.setText(String.format("%.2f hours", daylightHoursValue));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

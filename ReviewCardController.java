@@ -7,7 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 
-public class ReviewCardController implements Initializable{
+public class ReviewCardController implements Initializable {
 
     @FXML
     private Label reviewerNameLabel, reviewDescLabel;
@@ -16,8 +16,7 @@ public class ReviewCardController implements Initializable{
     private CheckBox reviewerVerified;
 
     @FXML
-    private Slider reviewerRating; 
-
+    private Slider reviewerRating;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -33,5 +32,5 @@ public class ReviewCardController implements Initializable{
         reviewerVerified.setSelected(review.didReviewerBuy());
         reviewerRating.setValue(review.getNumStars());
     }
-    
+
 }

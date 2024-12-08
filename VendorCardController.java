@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -17,6 +19,9 @@ public class VendorCardController implements Initializable {
 
     @FXML
     private Label businessNameLabel, locationLabel;
+
+    @FXML
+    private ImageView businessImage;
 
     @FXML
     private Slider ratingBar;
@@ -30,7 +35,7 @@ public class VendorCardController implements Initializable {
 
     @FXML
     public void openReviewsForVendor(MouseEvent me) {
-        if(me.getButton() == MouseButton.PRIMARY && me.getClickCount() == 2) {
+        if (me.getButton() == MouseButton.PRIMARY && me.getClickCount() == 2) {
             System.out.println("Opening vendors");
             // open the vendors scene and pass along current vendor info
 
@@ -38,17 +43,18 @@ public class VendorCardController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/vendor_review_list.fxml"));
                 VBox reviewWindow = loader.<VBox>load();
 
-                Vendor currentVendor = new Vendor(businessNameLabel.getText(), locationLabel.getText(), ratingBar.getValue());
+                Vendor currentVendor = new Vendor(businessNameLabel.getText(), locationLabel.getText(),
+                        businessImage.getImage().getUrl(), ratingBar.getValue());
                 ReviewsController controller = loader.getController();
                 controller.setVendor(currentVendor);
 
                 Stage reviewStage = new Stage();
                 reviewStage.setTitle("Vendor Reviews");
-                
+
                 Scene reviewScene = new Scene(reviewWindow);
                 reviewStage.setScene(reviewScene);
                 reviewStage.show();
-            } catch(IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -56,8 +62,9 @@ public class VendorCardController implements Initializable {
 
     public void addVendor(Vendor vendor) {
         businessNameLabel.setText(vendor.getBusinessName());
+        businessImage.setImage(new Image(vendor.getImageSrc()));
         locationLabel.setText(vendor.getLocation());
         ratingBar.setValue(vendor.getRating());
     }
-    
+
 }

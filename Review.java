@@ -1,4 +1,4 @@
-public class Review {
+public class Review implements Comparable<Review> {
     private String name, description;
     private double numStars;
     private boolean haveBought = false;
@@ -8,6 +8,11 @@ public class Review {
         this.description = description;
         this.numStars = numStars;
         this.haveBought = haveBought;
+    }
+
+    @Override
+    public int compareTo(Review otherReview) {
+        return Double.compare(numStars, otherReview.getNumStars());
     }
 
     public void setName(String name) {

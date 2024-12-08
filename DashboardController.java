@@ -9,26 +9,27 @@ import javafx.stage.Stage;
 
 public class DashboardController {
 
-    public static void loadScene(SceneEnum whichScene){
+    public static void loadScene(SceneEnum whichScene) {
         try {
-            VBox loadedScene = FXMLLoader.<VBox>load(DashboardController.class.getResource(whichScene.getResourceName()));
+            VBox loadedScene = FXMLLoader
+                    .<VBox>load(DashboardController.class.getResource(whichScene.getResourceName()));
             Stage newStage = new Stage();
             Scene scene = new Scene(loadedScene);
             newStage.setScene(scene);
             newStage.setTitle(whichScene.getSceneName());
             newStage.show();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     private void openAboutUs(ActionEvent ae) {
         loadScene(SceneEnum.ABOUT_US);
     }
 
     @FXML
-    private void openVendors(ActionEvent ae){
+    private void openVendors(ActionEvent ae) {
         loadScene(SceneEnum.VENDORS);
     }
 

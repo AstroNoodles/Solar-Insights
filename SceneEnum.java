@@ -15,11 +15,11 @@ public enum SceneEnum {
         this.sceneName = sceneName;
     }
 
-    public String getResourceName(){
+    public String getResourceName() {
         return resourceName;
     }
 
-    public String getSceneName(){
+    public String getSceneName() {
         return sceneName;
     }
 }

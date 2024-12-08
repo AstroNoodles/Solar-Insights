@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,39 +25,52 @@ public class LocalNewsController implements Initializable {
     @FXML
     private ChoiceBox<String> filterBox;
 
-    private ObservableList<NewsItem> newsItems;
+    private ObservableList<NewsItem> newsItems = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        filterBox.setItems(FXCollections.observableArrayList("By Topic", "By Favorite"));
+
+        // By Topic is default behavior
+        filterBox.setItems(FXCollections.observableArrayList("Intro", "Repairs", "Finances"));
 
         filterBox.getSelectionModel().selectedItemProperty().addListener((val, oldFilter, newFilter) -> {
             updateNewsList(oldFilter, newFilter);
         });
-        
+
         newsList.setCellFactory(cb -> new LocalNewsCard());
 
-        String sampleImageURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Photovoltaik_Dachanlage_" +
-        "Hannover_-_Schwarze_Heide_-_1_MW.jpg/640px-Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg";
-
-        NewsItem sampleItem = new NewsItem(sampleImageURL, "Solar Energy is Green!", 
-            "You should buy solar panels", "https://en.wikipedia.org/wiki/Solar_panel", true);
-        
-        newsItems = FXCollections.observableArrayList(sampleItem);
+        populateNewsList();
 
         newsList.setItems(newsItems);
     }
 
+    public void populateNewsList() {
+        try (VendorQueries vq = new VendorQueries("secrets.properties")) {
+            List<NewsItem> newsQueryItems = vq.getResources();
+            newsItems.addAll(newsQueryItems);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void updateNewsList(String oldFilter, String newFilter) {
         System.out.println("Updating the news list from new filter");
+        String categoryFilter = newFilter.toLowerCase();
+
+        List<NewsItem> filteredItems = newsItems.stream().filter((item) -> {
+            String cat = item.getCategory();
+            return cat.equals(categoryFilter);
+        }).collect(Collectors.toList());
+        System.out.println(filteredItems);
+
+        newsList.setItems(FXCollections.observableArrayList(filteredItems));
     }
 
     @FXML
     private void openAboutUs(ActionEvent ae) {
         DashboardController.loadScene(SceneEnum.ABOUT_US);
     }
-    
+
     // ------------------------------------------
     // BEGIN CARD CELL INTERFACE -- INNER CLASS
     // ------------------------------------------
@@ -63,7 +79,7 @@ public class LocalNewsController implements Initializable {
 
         private HBox card;
         private LocalNewsCardController controller;
-    
+
         public LocalNewsCard() {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/news_card.fxml"));
@@ -73,11 +89,11 @@ public class LocalNewsController implements Initializable {
                 e.printStackTrace();
             }
         }
-    
+
         @Override
         protected void updateItem(NewsItem item, boolean empty) {
             super.updateItem(item, empty);
-            if(empty || item == null) {
+            if (empty || item == null) {
                 setText(null);
                 setGraphic(null);
             } else {
@@ -86,8 +102,7 @@ public class LocalNewsController implements Initializable {
                 this.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             }
         }
-        
-    }
 
+    }
 
 }

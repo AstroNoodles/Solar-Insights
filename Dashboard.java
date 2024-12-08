@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 // javac --module-path /Library/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml,javafx.web *.java
 // java --module-path /Library/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml,javafx.web Dashboard.java
 
-public class Dashboard extends Application{
+public class Dashboard extends Application {
     public static void main(String[] args) {
         launch(args);
     }

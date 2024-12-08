@@ -7,9 +7,8 @@ public class LocalNewsWebViewer {
     @FXML
     private WebView webInterface;
 
-
     public void setURLToLoad(String urlToLoad) {
-        if(urlToLoad != "") {
+        if (urlToLoad != "") {
             System.out.printf("Loading %s\n", urlToLoad);
             webInterface.getEngine().load(urlToLoad);
         } else {
@@ -17,10 +16,9 @@ public class LocalNewsWebViewer {
         }
     }
 
-
     @FXML
     private void openAboutUs(ActionEvent ae) {
         DashboardController.loadScene(SceneEnum.ABOUT_US);
     }
-    
+
 }
