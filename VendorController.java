@@ -47,7 +47,7 @@ public class VendorController implements Initializable {
 
     public void populateVendorList() {
         vendorList.clear();
-        try (VendorQueries vq = new VendorQueries("secrets.properties")) {
+        try (VendorQueries vq = new VendorQueries(VendorQueries.SECRETS_FILE)) {
             HashMap<String, Vendor> allVendors = vq.getAllVendors();
             HashMap<String, Double> vendorAverageRatings = vq.getAvgRatings();
 

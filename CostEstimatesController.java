@@ -78,7 +78,7 @@ public class CostEstimatesController implements Initializable {
     @FXML
     private void queryDatabase(ActionEvent ae) {
         System.out.println("Querying the database");
-        try (VendorQueries vq = new VendorQueries("secrets.properties")) {
+        try (VendorQueries vq = new VendorQueries(VendorQueries.SECRETS_FILE)) {
             String neighborhood = neighborhoodBox.getValue();
             String house = houseBox.getValue();
             String solarLocation = solarLocationBox.getValue();

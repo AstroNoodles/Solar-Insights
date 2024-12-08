@@ -56,7 +56,7 @@ public class ReviewsController implements Initializable {
     private void seeReviews(ActionEvent ae) {
         String vendorName = targetVendors.get(0).getBusinessName();
         System.out.println(vendorName);
-        try (VendorQueries vq = new VendorQueries("secrets.properties")) {
+        try (VendorQueries vq = new VendorQueries(VendorQueries.SECRETS_FILE)) {
             System.out.println("cherry");
 
             List<Review> vendorSQLReviews = vq.getVendorReviews(vendorName);

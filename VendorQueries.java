@@ -14,6 +14,7 @@ import java.util.Properties;
 public class VendorQueries implements AutoCloseable {
 
     private Connection conn;
+    public static String SECRETS_FILE = "secrets.properties";
 
     public VendorQueries(String secretsFilePath) {
         try (FileInputStream fis = new FileInputStream(secretsFilePath)) {

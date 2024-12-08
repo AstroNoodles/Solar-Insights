@@ -45,7 +45,7 @@ public class LocalNewsController implements Initializable {
     }
 
     public void populateNewsList() {
-        try (VendorQueries vq = new VendorQueries("secrets.properties")) {
+        try (VendorQueries vq = new VendorQueries(VendorQueries.SECRETS_FILE)) {
             List<NewsItem> newsQueryItems = vq.getResources();
             newsItems.addAll(newsQueryItems);
         } catch (SQLException e) {
